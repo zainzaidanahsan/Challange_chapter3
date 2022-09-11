@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_huruf.*
 
 class Huruf : Fragment() {
@@ -53,9 +52,30 @@ class Huruf : Fragment() {
         )
 
         val adapterHuruf = Huruf_adapter(huruf)
-        val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val lm = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvKata.layoutManager = lm
         rvKata.adapter = adapterHuruf
+
+        adapterHuruf.onClick = {
+//            val fragmentKalimat = Kalimat()
+//            val bundle = Bundle()
+//            val frmanager = fragmentManager
+//            val fragmentTransaction = frmanager?.beginTransaction();
+//            bundle.putString("huruf", huruf.toString());
+//            fragmentKalimat.setArguments(bundle);
+//            fragmentTransaction?.replace(R.id.fcFragment,fragmentKalimat);
+//            fragmentTransaction?.commit();
+//
+            val fragment = Kalimat()
+            val bund = Bundle()
+            bund.putSerializable("dataHuruf", it)
+            fragment.arguments = bund
+            fragmentManager?.beginTransaction()?.replace(R.id.fcFragment, fragment)?.commit()
+
+        }
+
+
+
 
 
     }

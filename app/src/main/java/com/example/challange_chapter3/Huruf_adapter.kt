@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class Huruf_adapter(val lisHuruf : ArrayList<ListHuruf>) : RecyclerView.Adapter<Huruf_adapter.ViewHolder>() {
+class Huruf_adapter(val listHuruf : ArrayList<ListHuruf>) : RecyclerView.Adapter<Huruf_adapter.ViewHolder>() {
     var onClick : ((ListHuruf) -> Unit)? = null
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var huruf = view.findViewById<TextView>(R.id.txtHuruf)
@@ -20,13 +20,13 @@ class Huruf_adapter(val lisHuruf : ArrayList<ListHuruf>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: Huruf_adapter.ViewHolder, position: Int) {
-        holder.huruf.text = lisHuruf[position].huruf
+        holder.huruf.text = listHuruf[position].huruf
         holder.cardView.setOnClickListener{
-            onClick?.invoke(lisHuruf[position])
+            onClick?.invoke(listHuruf[position])
         }
     }
 
     override fun getItemCount(): Int {
-        return lisHuruf.size
+        return listHuruf.size
     }
 }
