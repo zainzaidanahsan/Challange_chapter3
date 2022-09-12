@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_huruf.*
 
@@ -73,6 +74,24 @@ class Huruf : Fragment() {
             fragmentManager?.beginTransaction()?.replace(R.id.fcFragment, fragment)?.commit()
 
         }
+        gridIcon.setOnClickListener{
+            val adapterHuruf = Huruf_adapter(huruf)
+            val lm = GridLayoutManager(context,2)
+            rvKata.layoutManager = lm
+            rvKata.adapter = adapterHuruf
+            adapterHuruf.onClick = {
+                val fragment = Kalimat()
+                val bund = Bundle()
+                bund.putSerializable("dataHuruf", it)
+                fragment.arguments = bund
+                fragmentManager?.beginTransaction()?.replace(R.id.fcFragment, fragment)?.commit()
+            }
+            gridIcon.setOnClickListener{
+                val frHuruf = Huruf()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcFragment, frHuruf)?.commit()
+            }
+        }
+
 
 
 
